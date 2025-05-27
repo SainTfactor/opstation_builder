@@ -18,3 +18,9 @@ apt_packages:
 
 python_packages:
   - ansible
+
+git_packages:
+  - https://github.com/sherlock-project/sherlock.git
+  - https://github.com/peass-ng/PEASS-ng.git
+  - https://github.com/fortra/impacket.git
+
