@@ -5,6 +5,7 @@
   roles:
     - role: staticdev.pyenv
       pyenv_env: user
+      pyenv_path: "{{ ansible_env.HOME }}/.pyenv"
       pyenv_global:
         - "3.12"
       pyenv_python_versions:
