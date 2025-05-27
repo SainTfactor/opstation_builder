@@ -27,3 +27,4 @@ git_packages:
 
 docker_containers:
   - metasploitframework/metasploit-framework
+  - mpepping/cyberchef 
