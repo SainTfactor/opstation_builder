@@ -2,11 +2,13 @@
 
 - name: Install apt packages
   ansible.builtin.apt:
-    pkg: {{ apt_packages }}
+    pkg: 
+      - "{{ apt_packages }}"
 
 - name: Install pip packages
   ansible.builtin.pip:
-    name: {{ python_packages }}
+    name: 
+      - "{{ python_packages }}"
 
 - name: Make tools directory
   ansible.builtin.file:
@@ -18,14 +20,17 @@
   ansible.builtin.git:
     repo: "{{ item }}"
     dest: ~/tools/
-  loop: {{ git_packages }}
+  loop: 
+   - "{{ git_packages }}"
 
 - name: Download docker images
   community.docker.docker_image_pull:
     name: "{{ item }}"
-  loop: {{ docker_containers }}
+  loop: 
+    - "{{ docker_containers }}"
 
 - name: Download docker images
   community.docker.docker_container:
     image: "{{ item }}"
-  loop: {{ docker_containers }}
+  loop: 
+    - "{{ docker_containers }}"
