@@ -24,3 +24,8 @@
   community.docker.docker_image_pull:
     name: "{{ item }}"
   loop: {{ docker_containers }}
+
+- name: Download docker images
+  community.docker.docker_container:
+    image: "{{ item }}"
+  loop: {{ docker_containers }}
