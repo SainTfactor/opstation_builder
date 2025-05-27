@@ -19,3 +19,8 @@
     repo: "{{ item }}"
     dest: ~/tools/
   loop: {{ git_packages }}
+
+- name: Download docker images
+  community.docker.docker_image_pull:
+    name: "{{ item }}"
+  loop: {{ docker_containers }}

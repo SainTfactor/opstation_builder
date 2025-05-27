@@ -18,9 +18,12 @@ apt_packages:
 
 python_packages:
   - ansible
+  - docker
 
 git_packages:
   - https://github.com/sherlock-project/sherlock.git
   - https://github.com/peass-ng/PEASS-ng.git
   - https://github.com/fortra/impacket.git
 
+docker_containers:
+  - metasploitframework/metasploit-framework
