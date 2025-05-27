@@ -1,0 +1,20 @@
+---
+apt_packages:
+  - jq
+  - yq
+  - net-tools
+  - socat
+  - vim
+  - curl
+  - nmap
+  - virt-manager
+  - chromium-browser
+  - hashcat
+  - aircrack-ng
+  - smbclient
+  - tmux
+  - sqlite3
+  - aisleriot
+
+python_packages:
+  - ansible

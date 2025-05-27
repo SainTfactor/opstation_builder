@@ -1,0 +1,19 @@
+---
+
+- name: Build CtF Opstation
+  hosts: all
+  roles:
+    - role: staticdev.pyenv
+      pyenv_env: user
+      pyenv_global:
+        - 3.12
+      pyenv_python_versions:
+        - 3.12
+        - 3.10
+        - 3.9
+        - 3.8
+        - 3.7
+        - 3.6
+        - 2.7
+
+    - role: package_installs

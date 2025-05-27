@@ -1,0 +1,9 @@
+---
+
+- name: Install apt packages
+  ansible.builtin.apt:
+    pkg: {{ apt_packages }}
+
+- name: Install pip packages
+  ansible.builtin.pip:
+    name: {{ python_packages }}
