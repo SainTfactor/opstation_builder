@@ -1,0 +1,36 @@
+# Overarching info
+
+Passwords are stored at ~/.hashcat/hashcat.potfile
+This can be controlled with the --pot-file param
+
+-a controls attack mode (e.g. 3: brute force, 0: dictionary, etc)
+
+-m controls hash type (e.g. "5600" for NTLMv2 hashes)
+
+
+# View cracked hashes
+
+hashcat -m <hash type> --show <hashes file>
+
+
+# Sample runs
+
+Straight runthrough of dict on ntlmssp hashes: 
+hashcat -a 0 -m 5600 <myhashes>.5600.hashes <my_dictionary>.dic
+
+Bruteforce 5 chars on office hash: 
+hashcat -m 9600 --force -a3 <myhashes>.txt ?a?a?a?a?a
+
+Fixed mask string on the front, but all 3char combo ends, PSK hash:
+hashcat --force -a 3 -m 22000 <myhashes>.txt <some_string>?a?a?a
+
+# HCXTools
+
+To get a wifi password from pcap, use the hcxtools suite
+
+Your pcap must contain EAPOL messages
+
+Command to run:
+hcxpcapngtool -o hashes.22000.txt <my pcap file>.pcapng
+
+This should give you a file with 22000 hashes in it to crack.

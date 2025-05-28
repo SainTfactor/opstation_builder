@@ -4,6 +4,8 @@
   ansible.builtin.apt:
     pkg: 
       - "{{ apt_packages }}"
+  environment:
+    DEBIAN_FRONTEND: noninteractive
 
 - name: Install pip packages
   ansible.builtin.pip:
