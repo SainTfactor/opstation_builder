@@ -2,15 +2,16 @@
 
 - name: Install apt packages
   ansible.builtin.apt:
-    pkg: 
-      - "{{ apt_packages }}"
+    name: "{{ apt_packages }}"
+    state: present
+    update_cache: yes
+  become: yes
   environment:
     DEBIAN_FRONTEND: noninteractive
 
 - name: Install pip packages
   ansible.builtin.pip:
-    name: 
-      - "{{ python_packages }}"
+    name: "{{ python_packages }}"
 
 - name: Make tools directory
   ansible.builtin.file:

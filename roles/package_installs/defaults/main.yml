@@ -2,7 +2,7 @@
 apt_packages:
   - aircrack-ng
   - aisleriot
-  - chromium-browser
+  - chromium
   - comerr-dev
   - curl
   - hashcat
