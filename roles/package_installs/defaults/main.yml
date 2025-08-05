@@ -23,6 +23,7 @@ apt_packages:
   - tmux
   - vim
   - virt-manager
+  - wireshark
   - yq
 
 python_packages:
