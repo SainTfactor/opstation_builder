@@ -11,6 +11,7 @@
 
 - name: Install pip packages
   ansible.builtin.pip:
+    executable: "~/.pyenv/shims/pip3.12"
     name: "{{ python_packages }}"
 
 - name: Make tools directory
@@ -23,17 +24,53 @@
   ansible.builtin.git:
     repo: "{{ item }}"
     dest: ~/tools/
-  loop: 
-   - "{{ git_packages }}"
+  loop: "{{ git_packages }}"
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+  become: yes
+
+- name: Add docker repository to apt
+  apt_repository:
+    repo: deb https://download.docker.com/linux/debian bookworm stable
+    state: present
+  become: yes
+
+- name: install docker
+  apt:
+    name: "{{item}}"
+    state: latest
+    update_cache: yes
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+  become: yes
+
+- name: check docker is active
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Ensure group "docker" exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+  become: yes
+
+- name: Install docker-compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: 'u+x,g+x'
+  become: yes
 
 - name: Download docker images
   community.docker.docker_image_pull:
     name: "{{ item }}"
-  loop: 
-    - "{{ docker_containers }}"
-
-- name: Download docker images
-  community.docker.docker_container:
-    image: "{{ item }}"
-  loop: 
-    - "{{ docker_containers }}"
+  loop: "{{ docker_containers }}"
+  become: yes
