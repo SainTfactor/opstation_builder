@@ -7,6 +7,8 @@ apt_packages:
   - chromium
   - comerr-dev
   - curl
+  - ffuf
+  - fldigi
   - gnupg-agent
   - hashcat
   - hcxdumptool
@@ -16,14 +18,18 @@ apt_packages:
   - libkrb5-dev
   - net-tools
   - nmap
+  - rdesktop
   - smbclient
   - socat
   - software-properties-common
   - sqlite3
+  - tcpdump
   - tmux
   - vim
   - virt-manager
+  - vlc
   - wireshark
+  - xxd
   - yq
 
 python_packages:
@@ -32,8 +38,10 @@ python_packages:
   - impacket
 
 git_packages:
-  - https://github.com/sherlock-project/sherlock.git
+  - https://github.com/danielmiessler/SecLists.git
+  - https://github.com/nicocha30/ligolo-ng.git
   - https://github.com/peass-ng/PEASS-ng.git
+  - https://github.com/sherlock-project/sherlock.git
 
 docker_containers:
   - metasploitframework/metasploit-framework
