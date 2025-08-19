@@ -12,6 +12,7 @@ apt_packages:
   - gnupg-agent
   - hashcat
   - hcxdumptool
+  - htop
   - jq
   - krb5-config
   - krb5-user
